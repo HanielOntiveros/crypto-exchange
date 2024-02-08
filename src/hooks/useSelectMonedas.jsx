@@ -16,8 +16,7 @@ const Select = styled.select`
     border-radius: 10px;
 `
 
-export const useSelectMonedas = (label, opciones) => {
-
+export const useSelectMonedas = (label, opciones, type) => {
     const [state, setState] = useState('')
 
     const SelectMonedas = () => (

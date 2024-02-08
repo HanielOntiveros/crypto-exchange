@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import { useSelectMonedas } from "../hooks/useSelectMonedas"
 import { monedas } from "../data/monedas"
+import { fetchData } from "../data/fetchData"
 
 const InputSubmit = styled.input`
     background-color: #9497ff;
@@ -21,12 +23,21 @@ const InputSubmit = styled.input`
     }
 `
 export const Formulario = () => {
+    const [cripto] = fetchData()
+    const [moneda, SelectMonedas] = useSelectMonedas('Elige tu moneda', monedas, 'Moneda')
+    const [criptoMoneda, SelectCriptoMonedas] = useSelectMonedas('Elige tu cripto moneda', cripto, 'Criptomoneda')
 
-    const [moneda, SelectMonedas] = useSelectMonedas('Elige tu moneda', monedas)
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+    }
     return (
-        <form>
+
+        <form
+            onSubmit={handleSubmit}
+        >
             <SelectMonedas />
-            {moneda}
+            <SelectCriptoMonedas />
             <InputSubmit
                 type='submit'
                 value='Cotizar'
